@@ -176,66 +176,66 @@ export default {
         if(data.total === 1) this.getProject(data.total);
       });
       
-      this.socket.on('reqHtml', data => {
-        let resData = new Object();
-        resData.to = data.sendUser;
-        resData.htmls = this.$refs.myHtml.innerHTML;
-        this.socket.emit('resHtml', resData);
-      });
+      // this.socket.on('reqHtml', data => {
+      //   let resData = new Object();
+      //   resData.to = data.sendUser;
+      //   resData.htmls = this.$refs.myHtml.innerHTML;
+      //   this.socket.emit('resHtml', resData);
+      // });
       
-      this.socket.on('reciveHtml', data => {
-        this.getProject();
-        this.htmls = data;
-      });
+      // this.socket.on('reciveHtml', data => {
+      //   this.getProject();
+      //   this.htmls = data;
+      // });
       
-      this.socket.on('logout', (data) => {
-        // console.log(`${data} 님이 나갔습니다.`);
-        this.logoutInit('logout', data);
-      });
+      // this.socket.on('logout', (data) => {
+      //   // console.log(`${data} 님이 나갔습니다.`);
+      //   this.logoutInit('logout', data);
+      // });
       
-      this.socket.on('async', (data) => {
-        this.merge(data);
-      });
-      // 중도 입장 유저가 현재 유저들이 선택중인 영역 요청
-      this.socket.on('requestPushRecord', (data) => {
-        this.socket.emit('recordsMerge', {
-          to: data,
-          record: this.pushRecord 
-        });
-      });
-      // 위의 요청에 대한 응답
-      this.socket.on('resRecords', (data) => {
-        if(data.length > 0) this.merge(data[0]);
-      });
+      // this.socket.on('async', (data) => {
+      //   this.merge(data);
+      // });
+      // // 중도 입장 유저가 현재 유저들이 선택중인 영역 요청
+      // this.socket.on('requestPushRecord', (data) => {
+      //   this.socket.emit('recordsMerge', {
+      //     to: data,
+      //     record: this.pushRecord 
+      //   });
+      // });
+      // // 위의 요청에 대한 응답
+      // this.socket.on('resRecords', (data) => {
+      //   if(data.length > 0) this.merge(data[0]);
+      // });
       
-      this.socket.on('reqAutoSave', () => {
-        this.saveBtn('auto');
-      });
+      // this.socket.on('reqAutoSave', () => {
+      //   this.saveBtn('auto');
+      // });
       
-      this.socket.on('alert', (data) => {
-        if(data.email !== this.$store.state.email) {
-          if(data.action === 'save') {
-            this.waitText = `${data.email} 님이 저장 중 입니다.`;
-            this.waitState = true;
-          }
-          if(data.action === 'saveEnd') {
-            this.waitText = data.msg;
-            setTimeout( function(){
-              this.waitState = false;
-            }.bind(this), 1000);
-          }
-          if(data.action === 'finalSave') {
-            this.waitText = data.msg;
-            this.waitState = true;
-          }
-          if(data.action === 'finalSaveEnd') {
-            this.waitState = false;
-            this.resState = data.result;
-            this.alertCon = data.msg;
-            this.alertState = true;
-          }
-        }
-      });
+      // this.socket.on('alert', (data) => {
+      //   if(data.email !== this.$store.state.email) {
+      //     if(data.action === 'save') {
+      //       this.waitText = `${data.email} 님이 저장 중 입니다.`;
+      //       this.waitState = true;
+      //     }
+      //     if(data.action === 'saveEnd') {
+      //       this.waitText = data.msg;
+      //       setTimeout( function(){
+      //         this.waitState = false;
+      //       }.bind(this), 1000);
+      //     }
+      //     if(data.action === 'finalSave') {
+      //       this.waitText = data.msg;
+      //       this.waitState = true;
+      //     }
+      //     if(data.action === 'finalSaveEnd') {
+      //       this.waitState = false;
+      //       this.resState = data.result;
+      //       this.alertCon = data.msg;
+      //       this.alertState = true;
+      //     }
+      //   }
+      // });
     },
     projectCheck() {
       this.$axios.get(`/client/checkProject/${this.code}`)
@@ -264,13 +264,13 @@ export default {
             el.removeAttribute('data-state');
             el.removeAttribute('disabled');
           }
-          if(type == 'logout') {
-            if(el.getAttribute('data-user') == email) {
-              el.removeAttribute('data-user');
-              el.removeAttribute('data-state');
-              el.removeAttribute('disabled');
-            }
-          }
+          // if(type == 'logout') {
+          //   if(el.getAttribute('data-user') == email) {
+          //     el.removeAttribute('data-user');
+          //     el.removeAttribute('data-state');
+          //     el.removeAttribute('disabled');
+          //   }
+          // }
         }
       }
     },
