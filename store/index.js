@@ -49,11 +49,11 @@ export const actions = {
     return data;
   },
   async clientAuth ({ commit, state }) {
-    //const { data } = await this.$axios.get('/client/checkSession');
-    //if (!data.items) {
-    //  commit('LOGOUT');
-     // this.$router.push('/login');
-    //}
+    const { data } = await this.$axios.get('/client/checkSession');
+    if (!data.items) {
+      commit('LOGOUT');
+      this.$router.push('/login');
+    }
   }
 };
 
