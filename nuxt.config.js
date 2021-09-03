@@ -73,8 +73,9 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: '/api'
+    baseURL: '/api',
     // baseURL: process.env.BASE_URL || 'http://package.eventconnector.net/api'
+    withCredentials: true,
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
